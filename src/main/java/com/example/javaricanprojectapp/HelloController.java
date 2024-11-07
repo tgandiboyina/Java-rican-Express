@@ -13,9 +13,6 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.fxml.Initializable;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 
 public class HelloController {
