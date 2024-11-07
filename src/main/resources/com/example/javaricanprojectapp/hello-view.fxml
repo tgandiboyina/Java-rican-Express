@@ -10,20 +10,21 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="85.0" prefWidth="516.0" text="Java-rican Express" textAlignment="CENTER">
-      <font>
-         <Font name="Verdana Bold" size="42.0" />
-      </font>
-   </Label>
+    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="85.0" prefWidth="516.0" text="Java-rican Express" textAlignment="CENTER">
+        <font>
+            <Font name="Verdana Bold" size="42.0" />
+        </font>
+    </Label>
 
     <Label fx:id="welcomeText" />
-    <Button onAction="#onHelloButtonClick" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #BEB2AB;" text="Login">
-      <font>
-         <Font name="Verdana Bold" size="18.0" />
-      </font></Button>
-   <Button layoutX="381.0" layoutY="346.0" onAction="#onHelloButtonClick" prefHeight="44.0" prefWidth="127.0" style="-fx-background-color: #BEB2AB;" text="Register">
-      <font>
-         <Font name="Verdana Bold" size="18.0" />
-      </font>
-   </Button>
+    <Button onAction="#onLoginButtonClick" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #BEB2AB;" text="Login">
+        <font>
+            <Font name="Verdana Bold" size="18.0" />
+        </font></Button>
+    <Button layoutX="381.0" layoutY="346.0" onAction="#onHelloButtonClick" prefHeight="44.0" prefWidth="127.0" style="-fx-background-color: #BEB2AB;" text="Register">
+        <font>
+            <Font name="Verdana Bold" size="18.0" />
+        </font>
+    </Button>
 </VBox>
+
