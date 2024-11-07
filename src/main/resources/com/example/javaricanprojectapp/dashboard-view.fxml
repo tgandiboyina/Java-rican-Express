@@ -40,11 +40,12 @@
         <Button text="Add Card" onAction="#onAddCardButtonClick" style="-fx-background-color: #BEB2AB;" />
 
     </VBox>
-
+    <Label fx:id="warningLabel" text="Invalid input. Please enter a valid number." visible="false" style="-fx-text-fill: red;"/>
     <!-- Section for Displaying Cards -->
     <Label text="Your Cards" style="-fx-font-size: 18; -fx-font-weight: bold;" />
     <VBox fx:id="cardsContainer" spacing="10.0">
         <!-- Dynamically added cards will appear here -->
     </VBox>
+    <Button text="Logout" onAction="#onLogoutButtonClick" style="-fx-background-color: #BEB2AB;" />
 </VBox>
 

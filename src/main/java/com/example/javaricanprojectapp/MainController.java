@@ -9,15 +9,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class MainController {
     @FXML
     private Label welcomeText;
+
+    @FXML
+    private Label warningLabel;
 
     @FXML
     private ComboBox<String> cardTypeDropdown;
@@ -33,7 +33,7 @@ public class MainController {
     @FXML
     private VBox cardsContainer;
 
-    private List<Card> userCards = new ArrayList<>();
+    private User user = new User("placeholderUsername");
 
     @FXML
     protected void onHelloButtonClick() {
@@ -52,6 +52,39 @@ public class MainController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    protected void onLogoutButtonClick() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home-view.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = (Stage) cardsContainer.getScene().getWindow(); // Assumes `cardsContainer` or another node is part of the scene
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void handleInvalidInput(NumberFormatException e) {
+        // Display warning label
+        warningLabel.setVisible(true);
+
+        // Clear all input fields
+        cardNumberField.clear();
+        cardNameField.clear();
+        expiryDateField.clear();
+        balanceField.clear();
+
+        // Set listeners on fields to hide warning when user types again
+
+        cardNumberField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.isEmpty()) {
+                warningLabel.setVisible(false);
+            }
+        });
+
     }
 
     // "Add Card" button click method
@@ -84,8 +117,8 @@ public class MainController {
             }
 
             // Add card to user's card list and display it
-            userCards.add(newCard);
-            displayCard(newCard);
+            user.addCard(newCard);
+            displayCards();
 
             // Clear input fields
             cardNumberField.clear();
@@ -95,13 +128,24 @@ public class MainController {
 
         } catch (NumberFormatException e) {
             System.out.println("Invalid balance input");
+            handleInvalidInput(e);
         }
     }
 
+
+
     // Method to display a card in the `cardsContainer`
-    private void displayCard(Card card) {
-        String cardInfo = card.getCardInfo(); // Ensure `getCardInfo` returns a string description of the card
-        Text cardText = new Text(cardInfo);
-        cardsContainer.getChildren().add(cardText);
+    private void displayCards() {
+        cardsContainer.getChildren().clear(); // Clear current display
+
+        for (Card card : user.getCards()) {
+            Label cardLabel = new Label(card.getCardInfo()); // Example of displaying card name
+            cardsContainer.getChildren().add(cardLabel);
+        }
     }
+
+//    @FXML
+//    public void initialize() {
+//        displayCards();
+//    }
 }

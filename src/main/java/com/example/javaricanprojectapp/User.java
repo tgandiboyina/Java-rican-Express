@@ -6,6 +6,7 @@ import java.util.List;
 public class User {
     private String username;
     private List<Card> cards;
+    //still need a list of transaction objects that also tells which card was used for each transaction
 
     public User(String username) {
         this.username = username;
@@ -18,5 +19,9 @@ public class User {
 
     public List<Card> getCards() {
         return cards;
+    }
+
+    public void clearCards() {
+        cards.clear();
     }
 }
