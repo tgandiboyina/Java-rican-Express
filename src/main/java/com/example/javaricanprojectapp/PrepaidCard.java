@@ -1,8 +1,8 @@
 package com.example.javaricanprojectapp;
 
 public class PrepaidCard extends AbstractCard{
-    public PrepaidCard(String paymentDate) {
-        super(0, paymentDate); // No interest for prepaid cards
+    public PrepaidCard(int cardNumber, String cardName, String expiryDate, double balance) {
+        super(cardNumber, cardName, 0, expiryDate); // No interest for debit cards
     }
 
     @Override
@@ -15,5 +15,10 @@ public class PrepaidCard extends AbstractCard{
     @Override
     public void makePayment(double amount) {
         balance += amount; // Load funds onto the prepaid card
+    }
+
+    @Override
+    public String getCardInfo(){
+        return "Card Type: Prepaid, Card Balance: " + balance + ", Card Number: " + cardNumber + ", Card Name: " + cardName + ", Interest Rate: " + interestRate + ", Date: " + expiryDate;
     }
 }

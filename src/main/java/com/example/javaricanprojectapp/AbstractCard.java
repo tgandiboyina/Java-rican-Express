@@ -5,12 +5,17 @@ public abstract class AbstractCard implements Card {
     protected boolean active;
     protected double interestRate;
     protected String paymentDate;
+    protected int cardNumber;
+    protected String cardName;
+    protected String expiryDate;
 
-    public AbstractCard(double interestRate, String paymentDate) {
+    public AbstractCard(int CardNumber, String CardName, double interestRate, String expiryDate) {
         this.balance = 0;
         this.active = true;
+        this.cardNumber = CardNumber;
+        this.cardName = CardName;
         this.interestRate = interestRate;
-        this.paymentDate = paymentDate;
+        this.expiryDate = expiryDate;
     }
 
     @Override
@@ -36,5 +41,10 @@ public abstract class AbstractCard implements Card {
     @Override
     public String getPaymentDate() {
         return paymentDate;
+    }
+
+    @Override
+    public String getCardInfo(){
+        return "Card Number: " + cardNumber + ", Card Name: " + cardName + ", Interest Rate: " + interestRate + ", Date: " + expiryDate;
     }
 }

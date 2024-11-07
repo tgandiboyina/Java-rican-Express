@@ -1,8 +1,8 @@
 package com.example.javaricanprojectapp;
 
 public class DebitCard extends AbstractCard{
-    public DebitCard(String paymentDate) {
-        super(0, paymentDate); // No interest for debit cards
+    public DebitCard(int cardNumber, String cardName, String expiryDate, double balance) {
+        super(cardNumber, cardName, 0, expiryDate); // No interest for debit cards
     }
 
     @Override
@@ -15,5 +15,10 @@ public class DebitCard extends AbstractCard{
     @Override
     public void makePayment(double amount) {
         balance += amount; // Add money to balance
+    }
+
+    @Override
+    public String getCardInfo(){
+        return "Card Type: Debit, Card Balance: " + balance + ", Card Number: " + cardNumber + ", Card Name: " + cardName + ", Interest Rate: " + interestRate + ", Date: " + expiryDate;
     }
 }

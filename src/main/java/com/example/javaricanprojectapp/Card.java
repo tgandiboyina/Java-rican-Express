@@ -8,4 +8,5 @@ public interface Card {
     void activate();
     void deactivate();
     boolean isActive();
+    String getCardInfo();
 }
