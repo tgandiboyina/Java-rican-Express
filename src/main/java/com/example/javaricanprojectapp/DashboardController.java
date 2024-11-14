@@ -4,19 +4,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import java.io.IOException;
 
-
-public class MainController {
-    @FXML
-    private Label welcomeText;
+public class DashboardController {
 
     @FXML
     private Label warningLabel;
@@ -36,30 +33,11 @@ public class MainController {
     private VBox cardsContainer;
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("DO LOGIN/REGISTER STUFF");
-    }
-
-    // Login button action method
-    @FXML
-    protected void onLoginButtonClick(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("dashboard-view.fxml"));
-            Parent root = fxmlLoader.load();
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
     protected void onLogoutButtonClick(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home-view.fxml"));
             Parent root = fxmlLoader.load();
-            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); // Assumes `cardsContainer` or another node is part of the scene
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
@@ -68,23 +46,18 @@ public class MainController {
     }
 
     public void handleInvalidInput(NumberFormatException e) {
-        // Display warning label
         warningLabel.setVisible(true);
 
-        // Clear all input fields
         cardNumberField.clear();
         cardNameField.clear();
         expiryDateField.clear();
         balanceField.clear();
-
-        // Set listeners on fields to hide warning when user types again
 
         cardNumberField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.isEmpty()) {
                 warningLabel.setVisible(false);
             }
         });
-
     }
 
     // "Add Card" button click method
@@ -101,7 +74,6 @@ public class MainController {
             int cardNumber = Integer.parseInt(cardNumberText);
             Card newCard;
 
-            // Create card based on selected type
             switch (cardType) {
                 case "Credit Card":
                     newCard = new CreditCard(cardNumber, cardName, expiryDate);
@@ -116,11 +88,9 @@ public class MainController {
                     return;
             }
 
-            // Add card to user's card list and display it
             User.addCard(newCard);
             displayCards();
 
-            // Clear input fields
             cardNumberField.clear();
             cardNameField.clear();
             expiryDateField.clear();
@@ -132,18 +102,18 @@ public class MainController {
         }
     }
 
-    // Method to display a card in the `cardsContainer`
     private void displayCards() {
-        cardsContainer.getChildren().clear(); // Clear current display
+        cardsContainer.getChildren().clear();
 
         for (Card card : User.getCards()) {
-            Label cardLabel = new Label(card.getCardInfo()); // Example of displaying card name
+            Label cardLabel = new Label(card.getCardInfo());
             cardsContainer.getChildren().add(cardLabel);
         }
     }
 
     @FXML
     public void initialize() {
-        System.out.println("initializing");
+        System.out.println("Dashboard view initialized, displaying cards...");
+        displayCards();
     }
 }
