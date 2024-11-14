@@ -4,24 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
-    private String username;
-    private List<Card> cards;
-    //still need a list of transaction objects that also tells which card was used for each transaction
+    private static String username = "placeholderUsername";
+    private static List<Card> cards = new ArrayList<>();
 
-    public User(String username) {
-        this.username = username;
-        this.cards = new ArrayList<>();
+    // Private constructor to prevent instantiation
+    private User() {}
+
+    public static void setUsername(String newUsername) {
+        username = newUsername;
     }
 
-    public void addCard(Card card) {
+    public static String getUsername() {
+        return username;
+    }
+
+    public static void addCard(Card card) {
         cards.add(card);
     }
 
-    public List<Card> getCards() {
+    public static List<Card> getCards() {
         return cards;
     }
 
-    public void clearCards() {
+    public static void clearCards() {
         cards.clear();
     }
 }

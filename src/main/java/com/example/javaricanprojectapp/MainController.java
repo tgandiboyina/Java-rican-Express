@@ -1,7 +1,9 @@
 package com.example.javaricanprojectapp;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
@@ -33,8 +35,6 @@ public class MainController {
     @FXML
     private VBox cardsContainer;
 
-    private User user = new User("placeholderUsername");
-
     @FXML
     protected void onHelloButtonClick() {
         welcomeText.setText("DO LOGIN/REGISTER STUFF");
@@ -42,11 +42,11 @@ public class MainController {
 
     // Login button action method
     @FXML
-    protected void onLoginButtonClick() {
+    protected void onLoginButtonClick(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("dashboard-view.fxml"));
             Parent root = fxmlLoader.load();
-            Stage stage = (Stage) welcomeText.getScene().getWindow();
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
@@ -55,11 +55,11 @@ public class MainController {
     }
 
     @FXML
-    protected void onLogoutButtonClick() {
+    protected void onLogoutButtonClick(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home-view.fxml"));
             Parent root = fxmlLoader.load();
-            Stage stage = (Stage) cardsContainer.getScene().getWindow(); // Assumes `cardsContainer` or another node is part of the scene
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); // Assumes `cardsContainer` or another node is part of the scene
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
@@ -117,7 +117,7 @@ public class MainController {
             }
 
             // Add card to user's card list and display it
-            user.addCard(newCard);
+            User.addCard(newCard);
             displayCards();
 
             // Clear input fields
@@ -132,20 +132,18 @@ public class MainController {
         }
     }
 
-
-
     // Method to display a card in the `cardsContainer`
     private void displayCards() {
         cardsContainer.getChildren().clear(); // Clear current display
 
-        for (Card card : user.getCards()) {
+        for (Card card : User.getCards()) {
             Label cardLabel = new Label(card.getCardInfo()); // Example of displaying card name
             cardsContainer.getChildren().add(cardLabel);
         }
     }
 
-//    @FXML
-//    public void initialize() {
-//        displayCards();
-//    }
+    @FXML
+    public void initialize() {
+        System.out.println("initializing");
+    }
 }
