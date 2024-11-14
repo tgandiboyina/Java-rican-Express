@@ -70,7 +70,7 @@ public class DashboardController {
         String balanceText = balanceField.getText();
 
         try {
-            double balance = Double.parseDouble(balanceText);
+            long balance = Long.parseLong(balanceText);
             int cardNumber = Integer.parseInt(cardNumberText);
             Card newCard;
 

@@ -8,8 +8,7 @@ public class CreditCard extends AbstractCard{
 //        this.limit = limit;
 //    }
     public CreditCard(int cardNumber, String cardName, String expiryDate) {
-        super(cardNumber, cardName, .05, expiryDate);
-        this.balance=0;
+        super(cardNumber, cardName, .05, expiryDate, 0);
         limit = 0;
     }
 
