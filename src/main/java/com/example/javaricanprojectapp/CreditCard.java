@@ -9,19 +9,19 @@ public class CreditCard extends AbstractCard{
 //    }
     public CreditCard(int cardNumber, String cardName, String expiryDate) {
         super(cardNumber, cardName, .05, expiryDate, 0);
-        limit = 0;
+        limit = 1000;
     }
 
     @Override
-    public void addCharge(double amount) {
+    public String addCharge(double amount) {
         if (isActive()) {
-            if (amount + balance < limit){
+            if (amount + balance <= limit){
                 balance += amount;
+                return "Charge added successfully!";
             }
-            else {
-                System.out.println("Charge declined: Over credit limit");
-            }
+            return "Charge declined: Over credit limit";
         }
+        return "Card not active";
     }
 
     @Override
@@ -31,6 +31,6 @@ public class CreditCard extends AbstractCard{
 
     @Override
     public String getCardInfo(){
-        return "Card Type: Credit, Card Balance: " + balance + ", Card Number: " + cardNumber + ", Card Name: " + cardName + ", Interest Rate: " + interestRate + ", Date: " + expiryDate;
+        return "Card Type: Credit, Card Balance: " + balance + ", Card Number: " + cardNumber + ", Card Name: " + cardName + ", Interest Rate: " + interestRate + ", Date: " + expiryDate + ", Limit: " + limit ;
     }
 }

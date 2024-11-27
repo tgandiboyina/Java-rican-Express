@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -14,6 +15,12 @@ public class CardDetailsController {
 
     @FXML
     private Label cardDetailsLabel;
+
+    @FXML
+    private TextField chargeAmountField;
+
+    @FXML
+    private Label chargeStatusLabel;
 
     private Card card;
 
@@ -25,6 +32,22 @@ public class CardDetailsController {
     private void displayCardDetails() {
         if (card != null) {
             cardDetailsLabel.setText(card.getCardInfo());
+        }
+    }
+
+    @FXML
+    protected void onAddChargeButtonClick(ActionEvent event) {
+        if (card != null) {
+            try {
+                double amount = Double.parseDouble(chargeAmountField.getText());
+                String status = card.addCharge(amount);
+                chargeStatusLabel.setText(status);
+                displayCardDetails(); // Refresh card details after adding charge
+            } catch (NumberFormatException e) {
+                chargeStatusLabel.setText("Invalid amount. Please enter a valid number.");
+            }
+        } else {
+            chargeStatusLabel.setText("No card selected.");
         }
     }
 

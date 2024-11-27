@@ -13,6 +13,10 @@
     <children>
         <Label fx:id="cardDetailsLabel" layoutX="50.0" layoutY="50.0" text="Card Details"/>
         <Button text="Back" layoutX="50.0" layoutY="100.0" onAction="#onBackButtonClick"/>
+        <TextField fx:id="chargeAmountField" layoutX="50.0" layoutY="150.0" promptText="Enter charge amount"/>
+        <Button text="Add Charge" layoutX="200.0" layoutY="150.0" onAction="#onAddChargeButtonClick"/>
+        <Label fx:id="chargeStatusLabel" layoutX="50.0" layoutY="200.0" text=""/>
     </children>
 </AnchorPane>
+
 

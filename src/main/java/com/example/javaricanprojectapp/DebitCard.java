@@ -6,10 +6,15 @@ public class DebitCard extends AbstractCard{
     }
 
     @Override
-    public void addCharge(double amount) {
-        if (isActive() && balance >= amount) {
-            balance -= amount; // Deduct directly from balance
+    public String addCharge(double amount) {
+        if (isActive()) {
+            if (balance >= amount){
+                balance -= amount;
+                return "Charge added successfully!";
+            }
+            return "Insufficient funds!";
         }
+        return "Card not active";
     }
 
     @Override
