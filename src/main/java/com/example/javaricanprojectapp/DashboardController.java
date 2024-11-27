@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -97,17 +98,46 @@ public class DashboardController {
             balanceField.clear();
 
         } catch (NumberFormatException e) {
-            System.out.println("Invalid balance input");
+            System.out.println("Invalid input");
             handleInvalidInput(e);
         }
     }
 
+//    private void displayCards() {
+//        cardsContainer.getChildren().clear();
+//
+//        for (Card card : User.getCards()) {
+//            Label cardLabel = new Label(card.getCardInfo());
+//            cardsContainer.getChildren().add(cardLabel);
+//        }
+//    }
+// Updated displayCards method
     private void displayCards() {
         cardsContainer.getChildren().clear();
 
+        //render card buttons
         for (Card card : User.getCards()) {
-            Label cardLabel = new Label(card.getCardInfo());
-            cardsContainer.getChildren().add(cardLabel);
+            Button cardButton = new Button(card.getCardInfo());
+            cardButton.setOnAction(event -> openCardDetails(card));
+            cardsContainer.getChildren().add(cardButton);
+        }
+    }
+
+    // Method to open Card Details page
+    private void openCardDetails(Card card) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("card-details-view.fxml"));
+            Parent root = loader.load();
+
+            // Pass card data to CardDetailsController
+            CardDetailsController controller = loader.getController();
+            controller.setCard(card);
+
+            Stage stage = (Stage) cardsContainer.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
