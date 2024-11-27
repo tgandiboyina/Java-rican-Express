@@ -25,8 +25,15 @@ public class CreditCard extends AbstractCard{
     }
 
     @Override
-    public void makePayment(double amount) {
-        balance -= amount;
+    public String makePayment(double amount) {
+        if (isActive()) {
+            if (balance - amount >= 0) {
+                balance -= amount;
+                return "Payment added successfully!";
+            }
+            return "Payment declined: Payment cannot be greater than current balance: $" + balance;
+        }
+        return "Card not active";
     }
 
     @Override

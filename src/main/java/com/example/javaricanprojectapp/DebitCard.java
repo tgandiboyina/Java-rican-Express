@@ -18,8 +18,12 @@ public class DebitCard extends AbstractCard{
     }
 
     @Override
-    public void makePayment(double amount) {
-        balance += amount; // Add money to balance
+    public String makePayment(double amount) {
+        if (isActive()) {
+            balance += amount;
+            return "Funds added successfully!";
+        }
+        return "Card not active";
     }
 
     @Override

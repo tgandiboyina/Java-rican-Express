@@ -18,8 +18,12 @@ public class PrepaidCard extends AbstractCard{
     }
 
     @Override
-    public void makePayment(double amount) {
-        balance += amount; // Load funds onto the prepaid card
+    public String makePayment(double amount) {
+        if (isActive()) {
+            balance += amount;
+            return "Funds added successfully!";
+        }
+        return "Card not active";
     }
 
     @Override

@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -20,13 +21,41 @@ public class CardDetailsController {
     private TextField chargeAmountField;
 
     @FXML
-    private Label chargeStatusLabel;
+    private Button paymentButton;
+
+    @FXML
+    private Label statusLabel;
 
     private Card card;
 
     public void setCard(Card card) {
         this.card = card;
         displayCardDetails();
+        updatePaymentButton();
+    }
+
+    private void updatePaymentButton() {
+        if (card instanceof CreditCard) {
+            paymentButton.setText("Make Payment");
+        } else {
+            paymentButton.setText("Add Funds");
+        }
+    }
+
+    @FXML
+    protected void onPaymentButtonClick(ActionEvent event) {
+        if (card != null) {
+            try {
+                double amount = Double.parseDouble(chargeAmountField.getText());
+                String status = card.makePayment(amount);
+                statusLabel.setText(status);
+                displayCardDetails(); // Refresh the card details.
+            } catch (NumberFormatException e) {
+                statusLabel.setText("Invalid amount. Please enter a valid number.");
+            }
+        } else {
+            statusLabel.setText("No card selected.");
+        }
     }
 
     private void displayCardDetails() {
@@ -41,13 +70,13 @@ public class CardDetailsController {
             try {
                 double amount = Double.parseDouble(chargeAmountField.getText());
                 String status = card.addCharge(amount);
-                chargeStatusLabel.setText(status);
+                statusLabel.setText(status);
                 displayCardDetails(); // Refresh card details after adding charge
             } catch (NumberFormatException e) {
-                chargeStatusLabel.setText("Invalid amount. Please enter a valid number.");
+                statusLabel.setText("Invalid amount. Please enter a valid number.");
             }
         } else {
-            chargeStatusLabel.setText("No card selected.");
+            statusLabel.setText("No card selected.");
         }
     }
 
