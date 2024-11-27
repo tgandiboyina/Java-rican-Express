@@ -1,8 +1,8 @@
 package com.example.javaricanprojectapp;
 
 public interface Card {
-    String addCharge(double amount);
-    String makePayment(double amount);
+    TransactionStatus addCharge(double amount);
+    TransactionStatus makePayment(double amount);
     double calculateInterest();
     String getPaymentDate();
     void activate();

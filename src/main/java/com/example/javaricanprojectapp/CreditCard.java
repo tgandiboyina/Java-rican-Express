@@ -3,37 +3,33 @@ package com.example.javaricanprojectapp;
 public class CreditCard extends AbstractCard{
     private int limit;
 
-//    public CreditCard(int cardNumber, String cardName, int limit, double balance) {
-//        super(cardNumber, paymentDate);
-//        this.limit = limit;
-//    }
     public CreditCard(int cardNumber, String cardName, String expiryDate) {
         super(cardNumber, cardName, .05, expiryDate, 0);
         limit = 1000;
     }
 
     @Override
-    public String addCharge(double amount) {
+    public TransactionStatus addCharge(double amount) {
         if (isActive()) {
             if (amount + balance <= limit){
                 balance += amount;
-                return "Charge added successfully!";
+                return new TransactionStatus(true, "Charge added successfully!");
             }
-            return "Charge declined: Over credit limit";
+            return new TransactionStatus(false, "Charge declined: Over credit limit");
         }
-        return "Card not active";
+        return new TransactionStatus(false,"Card not active");
     }
 
     @Override
-    public String makePayment(double amount) {
+    public TransactionStatus makePayment(double amount) {
         if (isActive()) {
             if (balance - amount >= 0) {
                 balance -= amount;
-                return "Payment added successfully!";
+                return new TransactionStatus(true,"Payment added successfully!");
             }
-            return "Payment declined: Payment cannot be greater than current balance: $" + balance;
+            return new TransactionStatus(false,"Payment declined: Payment cannot be greater than current balance: $" + balance);
         }
-        return "Card not active";
+        return new TransactionStatus(false, "Card not active");
     }
 
     @Override

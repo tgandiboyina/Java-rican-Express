@@ -6,6 +6,7 @@ import java.util.List;
 public class User {
     private static String username = "placeholderUsername";
     private static List<Card> cards = new ArrayList<>();
+    private static List<Transaction> transactions = new ArrayList<>();
 
     // Private constructor to prevent instantiation
     private User() {}

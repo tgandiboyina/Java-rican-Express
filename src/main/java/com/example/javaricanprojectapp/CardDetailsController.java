@@ -42,14 +42,22 @@ public class CardDetailsController {
         }
     }
 
+    private void displayCardDetails() {
+        if (card != null) {
+            cardDetailsLabel.setText(card.getCardInfo());
+        }
+    }
+
     @FXML
     protected void onPaymentButtonClick(ActionEvent event) {
         if (card != null) {
             try {
                 double amount = Double.parseDouble(chargeAmountField.getText());
-                String status = card.makePayment(amount);
-                statusLabel.setText(status);
-                displayCardDetails(); // Refresh the card details.
+                TransactionStatus status = card.makePayment(amount);
+                statusLabel.setText(status.getMessage());
+                if (status.isSuccess()) {
+                    displayCardDetails(); // Refresh the card details.
+                }
             } catch (NumberFormatException e) {
                 statusLabel.setText("Invalid amount. Please enter a valid number.");
             }
@@ -58,20 +66,16 @@ public class CardDetailsController {
         }
     }
 
-    private void displayCardDetails() {
-        if (card != null) {
-            cardDetailsLabel.setText(card.getCardInfo());
-        }
-    }
-
     @FXML
     protected void onAddChargeButtonClick(ActionEvent event) {
         if (card != null) {
             try {
                 double amount = Double.parseDouble(chargeAmountField.getText());
-                String status = card.addCharge(amount);
-                statusLabel.setText(status);
-                displayCardDetails(); // Refresh card details after adding charge
+                TransactionStatus status = card.addCharge(amount);
+                statusLabel.setText(status.getMessage());
+                if (status.isSuccess()) {
+                    displayCardDetails(); // Refresh card details after adding charge
+                }
             } catch (NumberFormatException e) {
                 statusLabel.setText("Invalid amount. Please enter a valid number.");
             }

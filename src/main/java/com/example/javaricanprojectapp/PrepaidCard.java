@@ -6,24 +6,24 @@ public class PrepaidCard extends AbstractCard{
     }
 
     @Override
-    public String addCharge(double amount) {
+    public TransactionStatus addCharge(double amount) {
         if (isActive()) {
             if (balance >= amount){
                 balance -= amount;
-                return "Charge added successfully!";
+                return new TransactionStatus(true,"Charge added successfully!");
             }
-            return "Insufficient funds!";
+            return new TransactionStatus(false,"Insufficient funds!");
         }
-        return "Card not active";
+        return new TransactionStatus(false,"Card not active");
     }
 
     @Override
-    public String makePayment(double amount) {
+    public TransactionStatus makePayment(double amount) {
         if (isActive()) {
             balance += amount;
-            return "Funds added successfully!";
+            return new TransactionStatus(true,"Funds added successfully!");
         }
-        return "Card not active";
+        return new TransactionStatus(false, "Card not active");
     }
 
     @Override
