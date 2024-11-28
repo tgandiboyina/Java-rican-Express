@@ -30,4 +30,16 @@ public class User {
     public static void clearCards() {
         cards.clear();
     }
+
+    public static void addTransaction(Transaction transaction) {
+        transactions.add(transaction);
+    }
+
+    public static List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public static void clearTransactions() {
+        transactions.clear();
+    }
 }

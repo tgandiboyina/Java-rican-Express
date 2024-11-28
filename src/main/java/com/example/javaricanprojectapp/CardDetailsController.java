@@ -48,6 +48,12 @@ public class CardDetailsController {
         }
     }
 
+    private void createTransaction(String desc, double amount, double newAmount, int cardID) {
+        //add string and double
+        Transaction transaction = new Transaction(desc, amount, newAmount, cardID);
+        User.addTransaction(transaction);
+    }
+
     @FXML
     protected void onPaymentButtonClick(ActionEvent event) {
         if (card != null) {
@@ -56,6 +62,7 @@ public class CardDetailsController {
                 TransactionStatus status = card.makePayment(amount);
                 statusLabel.setText(status.getMessage());
                 if (status.isSuccess()) {
+                    createTransaction("Payment", amount, status.getUpdatedBalance(), card.getID());
                     displayCardDetails(); // Refresh the card details.
                 }
             } catch (NumberFormatException e) {
@@ -74,6 +81,7 @@ public class CardDetailsController {
                 TransactionStatus status = card.addCharge(amount);
                 statusLabel.setText(status.getMessage());
                 if (status.isSuccess()) {
+                    createTransaction("Charge", amount, status.getUpdatedBalance(), card.getID());
                     displayCardDetails(); // Refresh card details after adding charge
                 }
             } catch (NumberFormatException e) {

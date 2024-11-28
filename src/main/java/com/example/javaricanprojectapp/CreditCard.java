@@ -13,7 +13,7 @@ public class CreditCard extends AbstractCard{
         if (isActive()) {
             if (amount + balance <= limit){
                 balance += amount;
-                return new TransactionStatus(true, "Charge added successfully!");
+                return new TransactionStatus(true, "Charge added successfully!", amount + balance);
             }
             return new TransactionStatus(false, "Charge declined: Over credit limit");
         }
@@ -25,7 +25,7 @@ public class CreditCard extends AbstractCard{
         if (isActive()) {
             if (balance - amount >= 0) {
                 balance -= amount;
-                return new TransactionStatus(true,"Payment added successfully!");
+                return new TransactionStatus(true,"Payment added successfully!", balance-amount);
             }
             return new TransactionStatus(false,"Payment declined: Payment cannot be greater than current balance: $" + balance);
         }

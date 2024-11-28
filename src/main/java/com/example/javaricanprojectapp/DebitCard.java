@@ -10,7 +10,7 @@ public class DebitCard extends AbstractCard{
         if (isActive()) {
             if (balance >= amount){
                 balance -= amount;
-                return new TransactionStatus(true,"Charge added successfully!");
+                return new TransactionStatus(true,"Charge added successfully!", balance-amount);
             }
             return new TransactionStatus(false,"Insufficient funds!");
         }
@@ -21,7 +21,7 @@ public class DebitCard extends AbstractCard{
     public TransactionStatus makePayment(double amount) {
         if (isActive()) {
             balance += amount;
-            return new TransactionStatus(true,"Funds added successfully!");
+            return new TransactionStatus(true,"Funds added successfully!", balance+amount);
         }
         return new TransactionStatus(false, "Card not active");
     }

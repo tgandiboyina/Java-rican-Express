@@ -9,4 +9,5 @@ public interface Card {
     void deactivate();
     boolean isActive();
     String getCardInfo();
+    int getID();
 }
