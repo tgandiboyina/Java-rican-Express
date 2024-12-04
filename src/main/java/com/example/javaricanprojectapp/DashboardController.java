@@ -55,6 +55,7 @@ public class DashboardController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home-view.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Home");
             showMaximizedScreen(root, stage);
         } catch (IOException e) {
             System.out.println("Error logging out" + e);
@@ -177,7 +178,10 @@ public class DashboardController {
         switch (sortOption) {
             case "Card Name":
                 sortedTransactions = User.getTransactions().stream()
-                        .sorted(Comparator.comparing(transaction -> User.getCardNameByID(transaction.getCardID())))
+                        .sorted(Comparator.comparing(transaction -> {
+                            String cardName = User.getCardNameByID(transaction.getCardID());
+                            return cardName != null ? cardName : "Unknown Card";
+                        }))
                         .collect(Collectors.toList());
                 break;
             case "Date":
@@ -241,6 +245,7 @@ public class DashboardController {
             CardDetailsController controller = loader.getController();
             controller.setCard(card);
             Stage stage = (Stage) cardsContainer.getScene().getWindow();
+            stage.setTitle("Card Details");
             showMaximizedScreen(root, stage);
         } catch (IOException e) {
             System.out.println("Error opening card details" + e);

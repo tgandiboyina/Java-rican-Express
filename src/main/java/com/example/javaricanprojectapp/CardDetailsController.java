@@ -98,6 +98,7 @@ public class CardDetailsController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard-view.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Dashboard");
             showMaximizedScreen(root, stage);
         } catch (IOException e) {
             System.out.println("Error going back to dashboard" +  e);

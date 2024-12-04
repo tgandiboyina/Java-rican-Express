@@ -8,7 +8,7 @@ public class DebitCard extends AbstractCard{
     @Override
     public TransactionStatus addCharge(double amount) {
         if (isActive()) {
-            if (balance >= amount){
+            if (balance >= amount && amount > 0){
                 balance -= amount;
                 return new TransactionStatus(true,"Charge added successfully!", balance-amount);
             }
@@ -19,7 +19,7 @@ public class DebitCard extends AbstractCard{
 
     @Override
     public TransactionStatus makePayment(double amount) {
-        if (isActive()) {
+        if (isActive() && amount > 0) {
             balance += amount;
             return new TransactionStatus(true,"Funds added successfully!", balance+amount);
         }

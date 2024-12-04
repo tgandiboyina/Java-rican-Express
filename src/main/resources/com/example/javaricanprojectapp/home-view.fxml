@@ -6,25 +6,24 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #E8DAD0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javaricanprojectapp.HomeController">
+<VBox alignment="CENTER" prefHeight="735.0" prefWidth="1145.0" spacing="20.0" style="-fx-background-color: #E8DAD0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javaricanprojectapp.HomeController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="85.0" prefWidth="516.0" text="Java-rican Express" textAlignment="CENTER">
+    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="139.0" prefWidth="844.0" text="Java-rican Express" textAlignment="CENTER">
         <font>
-            <Font name="Verdana Bold" size="42.0" />
+            <Font name="Verdana Bold" size="68.0" />
         </font>
     </Label>
 
     <Label fx:id="welcomeText" />
-    <Button onAction="#onLoginButtonClick" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #BEB2AB;" text="Login">
+    <Button onAction="#onLoginButtonClick" prefHeight="55.0" prefWidth="250.0" style="-fx-background-color: #BEB2AB;" text="Login">
         <font>
-            <Font name="Verdana Bold" size="18.0" />
+            <Font name="Verdana Bold" size="32.0" />
         </font></Button>
-    <Button layoutX="381.0" layoutY="346.0" onAction="#onHelloButtonClick" prefHeight="44.0" prefWidth="127.0" style="-fx-background-color: #BEB2AB;" text="Register">
+    <Button layoutX="381.0" layoutY="381.0" onAction="#onHelloButtonClick" prefHeight="55.0" prefWidth="250.0" style="-fx-background-color: #BEB2AB;" text="Register">
         <font>
-            <Font name="Verdana Bold" size="18.0" />
+            <Font name="Verdana Bold" size="32.0" />
         </font>
     </Button>
 </VBox>
-

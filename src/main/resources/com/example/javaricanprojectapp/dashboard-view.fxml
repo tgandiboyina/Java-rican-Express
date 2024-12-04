@@ -10,15 +10,16 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<HBox spacing="15.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javaricanprojectapp.DashboardController">
+<HBox prefHeight="661.0" prefWidth="1216.0" spacing="15.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javaricanprojectapp.DashboardController">
 
     <!-- Left Pane: Scrollable list of buttons -->
     <ScrollPane fitToHeight="true" fitToWidth="true" prefWidth="600.0" HBox.hgrow="NEVER">
         <content>
             <VBox spacing="10.0">
                 <!-- Search and Sort Section -->
-                <TextField fx:id="searchField" promptText="Search cards..." onKeyReleased="#onSearchKeyReleased" />
+                <TextField fx:id="searchField" onKeyReleased="#onSearchKeyReleased" promptText="Search cards..." />
                 <HBox spacing="10.0">
                     <ComboBox fx:id="sortOptionsDropdown" promptText="Sort by...">
                         <items>
@@ -49,9 +50,9 @@
     <!-- Right Pane: Scrollable list of transactions -->
     <ScrollPane fitToHeight="true" fitToWidth="true" prefWidth="600.0" HBox.hgrow="NEVER">
         <content>
-            <VBox spacing="10.0">
+            <VBox prefHeight="616.0" prefWidth="394.0" spacing="10.0">
                 <!-- Search and Sort Section -->
-                <TextField fx:id="transactionSearchField" promptText="Search transactions..." onKeyReleased="#onTransactionSearchKeyReleased" />
+                <TextField fx:id="transactionSearchField" onKeyReleased="#onTransactionSearchKeyReleased" prefHeight="25.0" prefWidth="312.0" promptText="Search transactions..." />
                 <HBox spacing="10.0">
                     <ComboBox fx:id="transactionSortOptionsDropdown" promptText="Sort by...">
                         <items>
@@ -80,20 +81,26 @@
         </content>
     </ScrollPane>
 
-    <!-- Main Right Pane -->
-    <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="683.0" prefWidth="1421.0" spacing="15.0" HBox.hgrow="ALWAYS">
+             <!-- Main Right Pane -->
+    <VBox alignment="CENTER" prefHeight="404.0" prefWidth="556.0" spacing="15.0" style="-fx-background-color: #E8DAD0;" HBox.hgrow="ALWAYS">
         <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
         </padding>
 
-        <!-- Header for Dashboard -->
-        <Label alignment="CENTER" style="-fx-font-size: 24; -fx-font-weight: bold;" text="User Dashboard" textAlignment="CENTER" />
+                 <!-- Header for Dashboard -->
+        <Label alignment="CENTER" prefHeight="73.0" prefWidth="280.0" style="-fx-font-weight: bold;" text="User Dashboard" textAlignment="CENTER">
+         <font>
+            <Font size="33.0" />
+         </font></Label>
 
-        <!-- Section for Adding New Card -->
+                 <!-- Section for Adding New Card -->
         <!-- Section for Displaying Cards -->
-        <Label style="-fx-font-size: 18; -fx-font-weight: bold;" text="Your Cards" />
+        <Label style="-fx-font-weight: bold;" text="Your Cards">
+         <font>
+            <Font size="22.0" />
+         </font></Label>
         <VBox alignment="CENTER" spacing="10.0">
-            <ComboBox fx:id="cardTypeDropdown" promptText="Select Card Type">
+            <ComboBox fx:id="cardTypeDropdown" prefWidth="131.0" promptText="Select Card Type">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                         <String fx:value="Credit Card" />
@@ -103,17 +110,23 @@
                 </items>
             </ComboBox>
 
-            <TextField fx:id="cardNumberField" promptText="Card Number" />
+                     <TextField fx:id="cardNumberField" promptText="Card Number" />
             <TextField fx:id="cardNameField" promptText="Cardholder Name" />
             <TextField fx:id="expiryDateField" promptText="Expiry Date (MM/YY)" />
             <TextField fx:id="balanceField" promptText="Balance" />
 
-            <Button onAction="#onAddCardButtonClick" style="-fx-background-color: #BEB2AB;" text="Add Card" />
+                     <Button onAction="#onAddCardButtonClick" prefHeight="33.0" prefWidth="123.0" style="-fx-background-color: #BEB2AB;" text="Add Card">
+            <font>
+               <Font name="System Bold" size="17.0" />
+            </font></Button>
         </VBox>
 
-        <Label fx:id="warningLabel" style="-fx-text-fill: red;" text="Invalid input. Please enter a valid number." visible="false" />
+                 <Label fx:id="warningLabel" style="-fx-text-fill: red;" text="Invalid input. Please enter a valid number." visible="false" />
 
-        <Button onAction="#onLogoutButtonClick" style="-fx-background-color: #BEB2AB;" text="Logout" />
+                 <Button onAction="#onLogoutButtonClick" prefHeight="24.0" prefWidth="78.0" style="-fx-background-color: #BEB2AB;" text="Logout">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
     </VBox>
 
 </HBox>

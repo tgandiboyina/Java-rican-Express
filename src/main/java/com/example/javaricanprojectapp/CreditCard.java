@@ -11,7 +11,7 @@ public class CreditCard extends AbstractCard{
     @Override
     public TransactionStatus addCharge(double amount) {
         if (isActive()) {
-            if (amount + balance <= limit){
+            if (amount + balance <= limit && amount > 0){
                 balance += amount;
                 return new TransactionStatus(true, "Charge added successfully!", amount + balance);
             }
@@ -23,7 +23,7 @@ public class CreditCard extends AbstractCard{
     @Override
     public TransactionStatus makePayment(double amount) {
         if (isActive()) {
-            if (balance - amount >= 0) {
+            if (balance - amount >= 0 && amount > 0) {
                 balance -= amount;
                 return new TransactionStatus(true,"Payment added successfully!", balance-amount);
             }
