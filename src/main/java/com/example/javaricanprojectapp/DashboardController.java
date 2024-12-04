@@ -177,7 +177,7 @@ public class DashboardController {
 
         List<Transaction> sortedTransactions;
         switch (sortOption) {
-            case "Card Name":
+            case "Card":
                 sortedTransactions = User.getTransactions().stream()
                         .sorted(Comparator.comparing(transaction -> {
                             String cardName = User.getCardNameByID(transaction.getCardID());
@@ -231,7 +231,7 @@ public class DashboardController {
 
         // Render transaction details as text
         for (Transaction transaction : transactions) {
-            Label transactionLabel = new Label(transaction.toString());
+            Label transactionLabel = new Label(transaction.toString(User.getCardNameByID(transaction.getCardID())));
             transactionsContainer.getChildren().add(transactionLabel);
         }
     }
@@ -254,7 +254,7 @@ public class DashboardController {
     }
 
     @FXML
-    public void initialize() {
+    public  void initialize() {
         System.out.println("Dashboard view initialized, displaying cards and transactions...");
         displayAllCards();
         displayAllTransactions();

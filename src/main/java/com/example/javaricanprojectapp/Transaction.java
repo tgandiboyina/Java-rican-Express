@@ -61,11 +61,18 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return "Transaction: " +
-                "Description='" + description + '\'' +
+        return "Description='" + description + '\'' +
                 ", Amount=" + amount +
                 ", New Balance=" + newBalance +
                 ", CardID=" + cardID +
+                ", Date=" + date;
+    }
+
+    public String toString(String cardName){
+        return "Description='" + description + '\'' +
+                ", Amount=" + amount +
+                ", New Balance=" + newBalance +
+                ", CardName=" + cardName +
                 ", Date=" + date;
     }
 }

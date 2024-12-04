@@ -57,7 +57,7 @@
                     <ComboBox fx:id="transactionSortOptionsDropdown" promptText="Sort by...">
                         <items>
                             <FXCollections fx:factory="observableArrayList">
-                                <String fx:value="Card Name" />
+                                <String fx:value="Card" />
                                 <String fx:value="Date" />
                                 <String fx:value="Amount" />
                                 <String fx:value="Description" />
@@ -89,16 +89,18 @@
 
                  <!-- Header for Dashboard -->
         <Label alignment="CENTER" prefHeight="73.0" prefWidth="280.0" style="-fx-font-weight: bold;" text="User Dashboard" textAlignment="CENTER">
-         <font>
-            <Font size="33.0" />
-         </font></Label>
+             <font>
+                <Font size="33.0" />
+             </font>
+        </Label>
 
-                 <!-- Section for Adding New Card -->
+        <!-- Section for Adding New Card -->
         <!-- Section for Displaying Cards -->
         <Label style="-fx-font-weight: bold;" text="Your Cards">
-         <font>
-            <Font size="22.0" />
-         </font></Label>
+             <font>
+                <Font size="22.0" />
+             </font>
+        </Label>
         <VBox alignment="CENTER" spacing="10.0">
             <ComboBox fx:id="cardTypeDropdown" prefWidth="131.0" promptText="Select Card Type">
                 <items>
@@ -110,15 +112,16 @@
                 </items>
             </ComboBox>
 
-                     <TextField fx:id="cardNumberField" promptText="Card Number" />
+            <TextField fx:id="cardNumberField" promptText="Card Number" />
             <TextField fx:id="cardNameField" promptText="Cardholder Name" />
             <TextField fx:id="expiryDateField" promptText="Expiry Date (MM/YY)" />
             <TextField fx:id="balanceField" promptText="Balance" />
 
-                     <Button onAction="#onAddCardButtonClick" prefHeight="33.0" prefWidth="123.0" style="-fx-background-color: #BEB2AB;" text="Add Card">
-            <font>
-               <Font name="System Bold" size="17.0" />
-            </font></Button>
+            <Button onAction="#onAddCardButtonClick" prefHeight="33.0" prefWidth="123.0" style="-fx-background-color: #BEB2AB;" text="Add Card">
+                <font>
+                   <Font name="System Bold" size="17.0" />
+                </font>
+            </Button>
         </VBox>
 
                  <Label fx:id="warningLabel" style="-fx-text-fill: red;" text="Invalid input. Please enter a valid number." visible="false" />
