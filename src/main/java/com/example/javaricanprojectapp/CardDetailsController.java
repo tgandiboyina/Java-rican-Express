@@ -3,14 +3,11 @@ package com.example.javaricanprojectapp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.IOException;
 import static com.example.javaricanprojectapp.Utils.showMaximizedScreen;
@@ -58,7 +55,7 @@ public class CardDetailsController {
     }
 
     @FXML
-    protected void onPaymentButtonClick(ActionEvent event) {
+    protected void onPaymentButtonClick() {
         if (card != null) {
             try {
                 double amount = Double.parseDouble(chargeAmountField.getText());
@@ -77,7 +74,7 @@ public class CardDetailsController {
     }
 
     @FXML
-    protected void onAddChargeButtonClick(ActionEvent event) {
+    protected void onAddChargeButtonClick() {
         if (card != null) {
             try {
                 double amount = Double.parseDouble(chargeAmountField.getText());
@@ -103,7 +100,7 @@ public class CardDetailsController {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             showMaximizedScreen(root, stage);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error going back to dashboard" +  e);
         }
     }
 }

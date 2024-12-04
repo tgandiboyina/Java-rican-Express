@@ -49,7 +49,7 @@ public class DashboardController {
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             showMaximizedScreen(root, stage);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error logging out" + e);
         }
     }
 
@@ -61,7 +61,7 @@ public class DashboardController {
         expiryDateField.clear();
         balanceField.clear();
 
-        cardNumberField.textProperty().addListener((observable, oldValue, newValue) -> {
+        cardNumberField.textProperty().addListener((_, _, newValue) -> {
             if (!newValue.isEmpty()) {
                 warningLabel.setVisible(false);
             }
@@ -78,7 +78,7 @@ public class DashboardController {
         String balanceText = balanceField.getText();
 
         try {
-            long balance = Long.parseLong(balanceText);
+            double balance = Double.parseDouble(balanceText);
             int cardNumber = Integer.parseInt(cardNumberText);
             Card newCard;
 
@@ -177,7 +177,7 @@ public class DashboardController {
             Stage stage = (Stage) cardsContainer.getScene().getWindow();
             showMaximizedScreen(root, stage);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error opening card details" + e);
         }
     }
 

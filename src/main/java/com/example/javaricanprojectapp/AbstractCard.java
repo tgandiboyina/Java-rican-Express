@@ -1,7 +1,7 @@
 package com.example.javaricanprojectapp;
 
 public abstract class AbstractCard implements Card {
-    protected long balance;
+    protected double balance;
     protected boolean active;
     protected double interestRate;
     protected String paymentDate;
@@ -12,7 +12,7 @@ public abstract class AbstractCard implements Card {
 
     private static int idCounter = 0;
 
-    public AbstractCard(int CardNumber, String CardName, double interestRate, String expiryDate, long balance) {
+    public AbstractCard(int CardNumber, String CardName, double interestRate, String expiryDate, double balance) {
         this.balance = balance;
         this.active = true;
         this.cardNumber = CardNumber;
@@ -74,7 +74,7 @@ public abstract class AbstractCard implements Card {
     }
 
     @Override
-    public long getBalance(){
+    public double getBalance(){
         return balance;
     }
 }

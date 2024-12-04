@@ -1,7 +1,7 @@
 package com.example.javaricanprojectapp;
 
 public class DebitCard extends AbstractCard{
-    public DebitCard(int cardNumber, String cardName, String expiryDate, long balance) {
+    public DebitCard(int cardNumber, String cardName, String expiryDate, double balance) {
         super(cardNumber, cardName, 0, expiryDate, balance); // No interest for debit cards
     }
 
