@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.javaricanprojectapp.CardDetailsController"
-            prefHeight="400.0" prefWidth="600.0">
+            fx:controller="com.example.javaricanprojectapp.CardDetailsController">
     <children>
         <Label fx:id="cardDetailsLabel" layoutX="50.0" layoutY="50.0" text="Card Details"/>
-        <Button text="Back" layoutX="50.0" layoutY="100.0" onAction="#onBackButtonClick"/>
         <TextField fx:id="chargeAmountField" layoutX="50.0" layoutY="150.0" promptText="Enter charge amount"/>
         <Button text="Add Charge" layoutX="250.0" layoutY="150.0" onAction="#onAddChargeButtonClick"/>
         <Button fx:id="paymentButton" layoutX="350.0" layoutY="150.0" text="Action" onAction="#onPaymentButtonClick" />
-        <Label fx:id="statusLabel" layoutX="50.0" layoutY="200.0" text=""/>
+        <Label fx:id="statusLabel" layoutX="50.0" layoutY="200.0"/>
+        <Button text="Back" layoutX="50.0" layoutY="250.0" onAction="#onBackButtonClick"/>
     </children>
 </AnchorPane>
 

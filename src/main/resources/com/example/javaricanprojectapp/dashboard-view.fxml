@@ -1,51 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
-<VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="15.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javaricanprojectapp.DashboardController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
+<HBox spacing="15.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javaricanprojectapp.DashboardController">
 
-    <!-- Header for Dashboard -->
-    <Label text="User Dashboard" alignment="CENTER" textAlignment="CENTER" style="-fx-font-size: 24; -fx-font-weight: bold;" />
+    <!-- Left Pane: Scrollable list of buttons -->
+    <ScrollPane fitToHeight="true" fitToWidth="true" prefWidth="400.0" HBox.hgrow="NEVER">
+        <content>
+            <VBox fx:id="cardsContainer" spacing="10.0">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                </padding>
+                <!-- Buttons will be added here -->
+                <!-- Example buttons -->
+                <Button text="Button 1" />
+                <Button text="Button 2" />
+                <Button text="Button 3" />
+                <!-- Add more buttons as needed -->
+            </VBox>
+        </content>
+    </ScrollPane>
 
-    <!-- Section for Adding New Card -->
-    <Label text="Add New Card" style="-fx-font-size: 18; -fx-font-weight: bold;" />
-    <VBox spacing="10.0" alignment="CENTER">
+    <!-- Right Pane -->
+    <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="683.0" prefWidth="1421.0" spacing="15.0" HBox.hgrow="ALWAYS">
+        <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+        </padding>
 
-        <ComboBox fx:id="cardTypeDropdown" promptText="Select Card Type">
-            <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="Credit Card" />
-                    <String fx:value="Debit Card" />
-                    <String fx:value="Prepaid Card" />
-                </FXCollections>
-            </items>
-        </ComboBox>
+        <!-- Header for Dashboard -->
+        <Label alignment="CENTER" style="-fx-font-size: 24; -fx-font-weight: bold;" text="User Dashboard" textAlignment="CENTER" />
 
-        <TextField fx:id="cardNumberField" promptText="Card Number" />
-        <TextField fx:id="cardNameField" promptText="Cardholder Name" />
-        <TextField fx:id="expiryDateField" promptText="Expiry Date (MM/YY)" />
-        <TextField fx:id="balanceField" promptText="Balance" />
+        <!-- Section for Adding New Card -->
+        <!-- Section for Displaying Cards -->
+        <Label style="-fx-font-size: 18; -fx-font-weight: bold;" text="Your Cards" />
+        <VBox alignment="CENTER" spacing="10.0">
+            <ComboBox fx:id="cardTypeDropdown" promptText="Select Card Type">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Credit Card" />
+                        <String fx:value="Debit Card" />
+                        <String fx:value="Prepaid Card" />
+                    </FXCollections>
+                </items>
+            </ComboBox>
 
-        <Button text="Add Card" onAction="#onAddCardButtonClick" style="-fx-background-color: #BEB2AB;" />
+            <TextField fx:id="cardNumberField" promptText="Card Number" />
+            <TextField fx:id="cardNameField" promptText="Cardholder Name" />
+            <TextField fx:id="expiryDateField" promptText="Expiry Date (MM/YY)" />
+            <TextField fx:id="balanceField" promptText="Balance" />
 
+            <Button onAction="#onAddCardButtonClick" style="-fx-background-color: #BEB2AB;" text="Add Card" />
+        </VBox>
+
+        <Label fx:id="warningLabel" style="-fx-text-fill: red;" text="Invalid input. Please enter a valid number." visible="false" />
+
+        <Button onAction="#onLogoutButtonClick" style="-fx-background-color: #BEB2AB;" text="Logout" />
     </VBox>
-    <Label fx:id="warningLabel" text="Invalid input. Please enter a valid number." visible="false" style="-fx-text-fill: red;"/>
-    <!-- Section for Displaying Cards -->
-    <Label text="Your Cards" style="-fx-font-size: 18; -fx-font-weight: bold;" />
-    <VBox fx:id="cardsContainer" spacing="10.0">
-        <!-- Dynamically added cards will appear here -->
-    </VBox>
-    <Button text="Logout" onAction="#onLogoutButtonClick" style="-fx-background-color: #BEB2AB;" />
-</VBox>
 
+</HBox>

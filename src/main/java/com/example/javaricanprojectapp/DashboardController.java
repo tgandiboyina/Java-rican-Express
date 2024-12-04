@@ -3,6 +3,7 @@ package com.example.javaricanprojectapp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,8 +12,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.IOException;
+
+import static com.example.javaricanprojectapp.Utils.showMaximizedScreen;
 
 public class DashboardController {
 
@@ -39,8 +43,7 @@ public class DashboardController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home-view.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
+            showMaximizedScreen(root, stage);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -132,10 +135,8 @@ public class DashboardController {
             // Pass card data to CardDetailsController
             CardDetailsController controller = loader.getController();
             controller.setCard(card);
-
             Stage stage = (Stage) cardsContainer.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
+            showMaximizedScreen(root, stage);
         } catch (IOException e) {
             e.printStackTrace();
         }

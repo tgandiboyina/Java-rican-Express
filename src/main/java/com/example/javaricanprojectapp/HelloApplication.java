@@ -2,19 +2,19 @@ package com.example.javaricanprojectapp;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
+import javafx.scene.Parent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static com.example.javaricanprojectapp.Utils.showMaximizedScreen;
+
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        Parent root = FXMLLoader.load(getClass().getResource("home-view.fxml"));
         stage.setTitle("Card APP");
-        stage.setScene(scene);
-        stage.show();
+        showMaximizedScreen(root, stage);
     }
 
     public static void main(String[] args) {
