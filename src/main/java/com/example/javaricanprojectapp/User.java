@@ -42,4 +42,13 @@ public class User {
     public static void clearTransactions() {
         transactions.clear();
     }
+
+    public static String getCardNameByID(int id) {
+        for (Card card : cards) {
+            if (card.getID() == id) {
+                return card.getName();
+            }
+        }
+        return null;
+    }
 }

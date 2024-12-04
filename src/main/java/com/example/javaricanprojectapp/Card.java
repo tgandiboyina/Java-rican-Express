@@ -12,4 +12,5 @@ public interface Card {
     String getType();
     int getID();
     double getBalance();
+    String getName();
 }

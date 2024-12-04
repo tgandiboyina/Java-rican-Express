@@ -1,4 +1,5 @@
 package com.example.javaricanprojectapp;
+
 import java.time.LocalDate;
 
 public class Transaction {
@@ -16,5 +17,57 @@ public class Transaction {
         this.date = LocalDate.now();
     }
 
-    // Getters and toString() method for logging
+    // Getters
+    public String getDescription() {
+        return description;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public double getNewBalance() {
+        return newBalance;
+    }
+
+    public int getCardID() {
+        return cardID;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    // Setters
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public void setNewBalance(double newBalance) {
+        this.newBalance = newBalance;
+    }
+
+    public void setCardID(int cardID) {
+        this.cardID = cardID;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "description='" + description + '\'' +
+                ", amount=" + amount +
+                ", newBalance=" + newBalance +
+                ", cardID=" + cardID +
+                ", date=" + date +
+                '}';
+    }
 }
+

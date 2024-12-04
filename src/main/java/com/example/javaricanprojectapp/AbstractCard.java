@@ -77,4 +77,9 @@ public abstract class AbstractCard implements Card {
     public double getBalance(){
         return balance;
     }
+
+    @Override
+    public String getName(){
+        return cardName;
+    }
 }

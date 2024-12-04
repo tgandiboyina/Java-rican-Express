@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
@@ -42,11 +43,18 @@ public class DashboardController {
     private ComboBox<String> sortOptionsDropdown;
 
     @FXML
+    private VBox transactionsContainer;
+    @FXML
+    private TextField transactionSearchField;
+    @FXML
+    private ComboBox<String> transactionSortOptionsDropdown;
+
+    @FXML
     protected void onLogoutButtonClick(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home-view.fxml"));
             Parent root = fxmlLoader.load();
-            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             showMaximizedScreen(root, stage);
         } catch (IOException e) {
             System.out.println("Error logging out" + e);
@@ -149,6 +157,50 @@ public class DashboardController {
         displayCards(sortedCards);
     }
 
+    @FXML
+    private void onTransactionSearchKeyReleased() {
+        String searchText = transactionSearchField.getText().toLowerCase();
+        List<Transaction> filteredTransactions = User.getTransactions().stream()
+                .filter(transaction -> transaction.toString().toLowerCase().contains(searchText))
+                .collect(Collectors.toList());
+        displayTransactions(filteredTransactions);
+    }
+
+    @FXML
+    private void onSortTransactionsButtonClick() {
+        String sortOption = transactionSortOptionsDropdown.getValue();
+        if (sortOption == null) {
+            return;
+        }
+
+        List<Transaction> sortedTransactions;
+        switch (sortOption) {
+            case "Card Name":
+                sortedTransactions = User.getTransactions().stream()
+                        .sorted(Comparator.comparing(transaction -> User.getCardNameByID(transaction.getCardID())))
+                        .collect(Collectors.toList());
+                break;
+            case "Date":
+                sortedTransactions = User.getTransactions().stream()
+                        .sorted(Comparator.comparing(Transaction::getDate))
+                        .collect(Collectors.toList());
+                break;
+            case "Amount":
+                sortedTransactions = User.getTransactions().stream()
+                        .sorted(Comparator.comparing(Transaction::getAmount))
+                        .collect(Collectors.toList());
+                break;
+            case "Description":
+                sortedTransactions = User.getTransactions().stream()
+                        .sorted(Comparator.comparing(Transaction::getDescription))
+                        .collect(Collectors.toList());
+                break;
+            default:
+                return;
+        }
+        displayTransactions(sortedTransactions);
+    }
+
     // Updated displayCards method
     private void displayAllCards() {
         displayCards(User.getCards());
@@ -157,11 +209,25 @@ public class DashboardController {
     private void displayCards(List<Card> cards) {
         cardsContainer.getChildren().clear();
 
-        //render card buttons
+        // Render card buttons
         for (Card card : cards) {
             Button cardButton = new Button(card.getCardInfo());
             cardButton.setOnAction(event -> openCardDetails(card));
             cardsContainer.getChildren().add(cardButton);
+        }
+    }
+
+    private void displayAllTransactions() {
+        displayTransactions(User.getTransactions());
+    }
+
+    private void displayTransactions(List<Transaction> transactions) {
+        transactionsContainer.getChildren().clear();
+
+        // Render transaction details as text
+        for (Transaction transaction : transactions) {
+            Label transactionLabel = new Label(transaction.toString());
+            transactionsContainer.getChildren().add(transactionLabel);
         }
     }
 
@@ -183,7 +249,8 @@ public class DashboardController {
 
     @FXML
     public void initialize() {
-        System.out.println("Dashboard view initialized, displaying cards...");
+        System.out.println("Dashboard view initialized, displaying cards and transactions...");
         displayAllCards();
+        displayAllTransactions();
     }
 }

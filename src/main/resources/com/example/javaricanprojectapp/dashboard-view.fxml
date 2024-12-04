@@ -17,36 +17,70 @@
     <ScrollPane fitToHeight="true" fitToWidth="true" prefWidth="600.0" HBox.hgrow="NEVER">
         <content>
             <VBox spacing="10.0">
-            <!-- Search and Sort Section -->
-            <TextField fx:id="searchField" promptText="Search cards..." onKeyReleased="#onSearchKeyReleased" />
-            <HBox spacing="10.0">
-                <ComboBox fx:id="sortOptionsDropdown" promptText="Sort by...">
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="Type" />
-                            <String fx:value="Date Added" />
-                            <String fx:value="Balance" />
-                        </FXCollections>
-                    </items>
-                </ComboBox>
-                <Button onAction="#onSortCardsButtonClick" text="Sort Cards" />
-            </HBox>
-            <VBox fx:id="cardsContainer" spacing="10.0">
-                <padding>
-                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                </padding>
-                <!-- Buttons will be added here -->
-                <!-- Example buttons -->
-                <Button text="Button 1" />
-                <Button text="Button 2" />
-                <Button text="Button 3" />
-                <!-- Add more buttons as needed -->
-            </VBox>
+                <!-- Search and Sort Section -->
+                <TextField fx:id="searchField" promptText="Search cards..." onKeyReleased="#onSearchKeyReleased" />
+                <HBox spacing="10.0">
+                    <ComboBox fx:id="sortOptionsDropdown" promptText="Sort by...">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Type" />
+                                <String fx:value="Date Added" />
+                                <String fx:value="Balance" />
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+                    <Button onAction="#onSortCardsButtonClick" text="Sort Cards" />
+                </HBox>
+                <VBox fx:id="cardsContainer" spacing="10.0">
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                    <!-- Buttons will be added here -->
+                    <!-- Example buttons -->
+                    <Button text="Button 1" />
+                    <Button text="Button 2" />
+                    <Button text="Button 3" />
+                    <!-- Add more buttons as needed -->
+                </VBox>
             </VBox>
         </content>
     </ScrollPane>
 
-    <!-- Right Pane -->
+    <!-- Right Pane: Scrollable list of transactions -->
+    <ScrollPane fitToHeight="true" fitToWidth="true" prefWidth="600.0" HBox.hgrow="NEVER">
+        <content>
+            <VBox spacing="10.0">
+                <!-- Search and Sort Section -->
+                <TextField fx:id="transactionSearchField" promptText="Search transactions..." onKeyReleased="#onTransactionSearchKeyReleased" />
+                <HBox spacing="10.0">
+                    <ComboBox fx:id="transactionSortOptionsDropdown" promptText="Sort by...">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Card Name" />
+                                <String fx:value="Date" />
+                                <String fx:value="Amount" />
+                                <String fx:value="Description" />
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+                    <Button onAction="#onSortTransactionsButtonClick" text="Sort Transactions" />
+                </HBox>
+                <VBox fx:id="transactionsContainer" spacing="10.0">
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                    <!-- Transaction items will be added here -->
+                    <!-- Example transactions -->
+                    <Button text="Transaction 1" />
+                    <Button text="Transaction 2" />
+                    <Button text="Transaction 3" />
+                    <!-- Add more transaction buttons as needed -->
+                </VBox>
+            </VBox>
+        </content>
+    </ScrollPane>
+
+    <!-- Main Right Pane -->
     <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="683.0" prefWidth="1421.0" spacing="15.0" HBox.hgrow="ALWAYS">
         <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
