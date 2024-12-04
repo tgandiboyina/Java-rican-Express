@@ -55,9 +55,26 @@ public abstract class AbstractCard implements Card {
     public String getCardInfo(){
         return "Card Number: " + cardNumber + ", Card Name: " + cardName + ", Interest Rate: " + interestRate + ", Date: " + expiryDate;
     }
+    @Override
+    public String getType() {
+        if (this instanceof CreditCard) {
+            return "credit";
+        } else if (this instanceof DebitCard) {
+            return "debit";
+        } else if (this instanceof PrepaidCard) {
+            return "prepaid";
+        } else {
+            return "unknown";
+        }
+    }
 
     @Override
     public int getID(){
         return ID;
+    }
+
+    @Override
+    public long getBalance(){
+        return balance;
     }
 }

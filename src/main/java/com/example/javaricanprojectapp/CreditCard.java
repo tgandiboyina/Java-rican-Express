@@ -34,6 +34,6 @@ public class CreditCard extends AbstractCard{
 
     @Override
     public String getCardInfo(){
-        return "Card Type: Credit, Card Balance: " + balance + ", Card Number: " + cardNumber + ", Card Name: " + cardName + ", Interest Rate: " + interestRate + ", Date: " + expiryDate + ", Limit: " + limit ;
+        return "Name: " + cardName +  ", Type: Credit, Balance: " + balance + ", Number: " + cardNumber + ", Interest Rate: " + interestRate + ", Expiry: " + expiryDate + ", Limit: " + limit ;
     }
 }

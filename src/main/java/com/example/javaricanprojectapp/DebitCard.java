@@ -28,6 +28,6 @@ public class DebitCard extends AbstractCard{
 
     @Override
     public String getCardInfo(){
-        return "Card Type: Debit, Card Balance: " + balance + ", Card Number: " + cardNumber + ", Card Name: " + cardName + ", Interest Rate: " + interestRate + ", Date: " + expiryDate;
+        return "Name: " + cardName + ", Type: Debit, Balance: " + balance + ", Number: " + cardNumber + ", Interest Rate: " + interestRate + ", Expiry: " + expiryDate;
     }
 }
