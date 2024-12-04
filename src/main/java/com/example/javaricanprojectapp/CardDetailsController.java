@@ -49,7 +49,6 @@ public class CardDetailsController {
     }
 
     private void createTransaction(String desc, double amount, double newAmount, int cardID) {
-        //add string and double
         Transaction transaction = new Transaction(desc, amount, newAmount, cardID);
         User.addTransaction(transaction);
     }

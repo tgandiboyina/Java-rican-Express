@@ -80,13 +80,14 @@ public class DashboardController {
     // "Add Card" button click method
     @FXML
     protected void onAddCardButtonClick() {
-        String cardType = cardTypeDropdown.getValue();
-        String cardNumberText = cardNumberField.getText();
-        String cardName = cardNameField.getText();
-        String expiryDate = expiryDateField.getText();
-        String balanceText = balanceField.getText();
 
         try {
+            String cardType = cardTypeDropdown.getValue();
+            String cardNumberText = cardNumberField.getText();
+            String cardName = cardNameField.getText();
+            String expiryDate = expiryDateField.getText();
+            String balanceText = balanceField.getText();
+
             double balance = Double.parseDouble(balanceText);
             int cardNumber = Integer.parseInt(cardNumberText);
             Card newCard;
@@ -108,14 +109,14 @@ public class DashboardController {
             User.addCard(newCard);
             displayAllCards();
 
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input");
+            handleInvalidInput(e);
+        } finally {
             cardNumberField.clear();
             cardNameField.clear();
             expiryDateField.clear();
             balanceField.clear();
-
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid input");
-            handleInvalidInput(e);
         }
     }
 
