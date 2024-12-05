@@ -1,7 +1,3 @@
-TO RUN CODE:
-For IDE I would reccomend intellij IDEA https://www.jetbrains.com/idea/download/?section=windows
-When installing create all associations
-Then just clone the repo as a new proj, and select the HelloApplication to run the app. If you are going to make big changes I would push to a new branch.
+Card Management App
 
-If yall have problems running the program, right click on pom.xml -> maven -> generate sources and update folders
-then right click on pom.xml -> maven -> reload project
+Created with Java using Maven and JavaFX. Users can add cards, and add/subtract money from each. Cards are displayed neatly on the left side, along with all the transactions. Search and sort functionality is also included.
